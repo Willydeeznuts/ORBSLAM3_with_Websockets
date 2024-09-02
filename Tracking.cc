@@ -51,7 +51,17 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     mnInitialFrameId(0), mbCreatedMap(false), mnFirstFrameId(0), mpCamera2(nullptr), mpLastKeyFrame(static_cast<KeyFrame*>(NULL))
 {
 
- wsClient = std::make_unique<WebSocketClient>("192.168.1.206", "8765");
+  // Retry logic for WebSocket connection
+    bool connected = false;
+    while (!connected) {
+        try {
+            wsClient = std::make_unique<WebSocketClient>("192.168.1.206", "8765");
+            connected = true;  // If the connection succeeds, exit the loop
+        } catch (const std::exception &e) {
+            std::cerr << "Failed to connect to WebSocket server: " << e.what() << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(5));  // Wait for 5 seconds before retrying
+        }
+    }
  
     // Load camera parameters from settings file
     if(settings){
