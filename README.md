@@ -1,6 +1,6 @@
 # ORB-SLAM3-WithWebSockets
 
-### V1.0, December 22th, 2021
+### V1.0, December 22th, 2021 ORBSLAM, V1 of WebSocket Modification
 **Authors:** Carlos Campos, Richard Elvira, Juan J. Gómez Rodríguez, [José M. M. Montiel](http://webdiis.unizar.es/~josemari/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/).
 
 The [Changelog](https://github.com/UZ-SLAMLab/ORB_SLAM3/blob/master/Changelog.md) describes the features of each version.
