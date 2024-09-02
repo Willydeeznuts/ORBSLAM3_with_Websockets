@@ -7,6 +7,7 @@
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <string>
+#include <thread>  // Add this line
 
 class WebSocketClient {
 public:
@@ -15,10 +16,15 @@ public:
     void close();
 
 private:
+
+    void connect();  // New method to handle connection and reconnection
+    
+    std::string host_;  // Store host for reconnection
+    std::string port_;  // Store port for reconnection
+    
     boost::asio::io_context ioc_;
     boost::asio::ip::tcp::resolver resolver_;
     boost::beast::websocket::stream<boost::asio::ip::tcp::socket> ws_;
 };
 
 #endif // WEBSOCKETCLIENT_H
-
